@@ -122,7 +122,7 @@ def scrape_mars_hemi():
     # Scrape title and image url into dictionary
     image_dict =[]
     for image in hemi_image_wide:
-        image_url = "https://astrogeology.usgs.gov" + image.find("a", class_="itemLink product-item")["href"]  
+        image_url = "https://astrogeology.usgs.gov" + image.find("img", class_="thumb")["src"]  
         image_title = image.find("h3").get_text()
         image_dict.append({"title": image_title, "img_url": image_url})
 
