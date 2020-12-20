@@ -119,16 +119,16 @@ def scrape_mars_hemi():
     # Narrow scrape to right area
     hemi_image_wide = hemi_soup.find("div", class_="collapsible results").find_all("div", class_="item")
 
-    # Scrape title and image url into dictionary
+    # Scrape title and thumb images url into dictionary
     image_dict =[]
     for image in hemi_image_wide:
         image_url = "https://astrogeology.usgs.gov" + image.find("img", class_="thumb")["src"]  
         image_title = image.find("h3").get_text()
         image_dict.append({"title": image_title, "img_url": image_url})
-
     browser.quit()
-   
     return image_dict
+
+
 
 
 def master_scrape():
@@ -139,5 +139,5 @@ def master_scrape():
     master_scrape_dict["jpl_image"] = scrape_space_image()
     master_scrape_dict["mars_facts"] = scrape_fact_table()
     master_scrape_dict["mars_hemi"] = scrape_mars_hemi()
-    
+
     return master_scrape_dict
