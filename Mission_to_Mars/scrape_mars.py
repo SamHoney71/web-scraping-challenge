@@ -84,8 +84,8 @@ def scrape_fact_table():
     facts_html = browser.html
     facts_soup = BeautifulSoup(facts_html, 'html.parser')
 
-    # locate the html for the fact table
-    mars_facts_wide = facts_soup.find("table", class_="tablepress tablepress-id-p-mars")
+    # # locate the html for the fact table
+    # mars_facts_wide = facts_soup.find("table", class_="tablepress tablepress-id-p-mars")
 
     #scrape data into list
     table_rows = facts_soup.find('tbody').find_all('tr')
@@ -128,6 +128,24 @@ def scrape_mars_hemi():
     browser.quit()
     return image_dict
 
+# def scrape_jpg_dict():
+#     browser = init_browser()
+#     cat = scrape_mars_hemi()
+
+#     jpg_dict =[]
+
+#     for i in range(0, 4):
+#         url = cat[i]["img_url"]
+#         browser.visit(url)
+#         jpg_html = browser.html
+#         jpg_soup = BeautifulSoup(jpg_html, 'html.parser')
+#         time.sleep(1)
+#         jpg_link = "https://astrogeology.usgs.gov" + jpg_soup.find("img", class_="wide-image")["src"]
+#         jpg_dict.append({"jpg_url": jpg_link})
+
+    
+#     browser.quit()       
+#     return jpg_dict
 
 
 
@@ -139,5 +157,6 @@ def master_scrape():
     master_scrape_dict["jpl_image"] = scrape_space_image()
     master_scrape_dict["mars_facts"] = scrape_fact_table()
     master_scrape_dict["mars_hemi"] = scrape_mars_hemi()
+    # master_scape_dict["mars_jpl"] = scrape_jpg_dict()
 
     return master_scrape_dict
